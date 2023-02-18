@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GameStart from "./Pages/GameStart";
 import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Navigation from './components/Navigation';
@@ -11,15 +10,13 @@ function App() {
     return (
       <div className="App">
         <Header />
-        <Home />
-        <About />
-        <Contacts/>
+{/*         <Wait /> */}
 
         <Router>
           <Navigation>
             <Routes>
-              <Route exact path="/" element={<Home />} />
-               <Route exact path="/gamestart" element={<GameStart />} />
+              <Route exact path="/" element={<Wait />} />
+               <Route exact path="/gamestart" element={<Home/>} />
               <Route exact path="/contact" element={<Contacts />} /> 
             </Routes>
           </Navigation>
