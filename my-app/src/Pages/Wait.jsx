@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Home() {
+function Wait() {
   return (
     <div>
       <h1>Welcome to My Website!</h1>
@@ -9,4 +9,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Wait;

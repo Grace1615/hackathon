@@ -1,26 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GameStart from "./Pages/GameStart";
-// import Navigation from './components/Navigation';
+import Home from "./Pages/Home"
+import About from "./Pages/About"
+import Navigation from './components/Navigation';
 import Wait from './Pages/Wait';
-// import Contact from './Pages/Contact'
-// import Header from "./components/Header";
+import Contacts from './Pages/Contacts'
+import Header from "./components/Header";
 
 function App() {
     return (
       <div className="App">
-{/*         <Header /> */}
-{/*         <Home /> */}
-{/*         <About /> */}
-{/*         <Contact/> */}
+        <Header />
+        <Home />
+        <About />
+        <Contacts/>
 
         <Router>
-{/*           <Navigation> */}
+          <Navigation>
             <Routes>
-              <Route exact path="/" element={<Wait />} />
+              <Route exact path="/" element={<Home />} />
                <Route exact path="/gamestart" element={<GameStart />} />
-{/*               <Route exact path="/contact" element={<Contact />} />  */}
+              <Route exact path="/contact" element={<Contacts />} /> 
             </Routes>
-{/*           </Navigation> */}
+          </Navigation>
         </Router>
       </div>
     );
