@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { w3cwebsocket as WebSocket } from 'websocket';
 import io from 'socket.io-client';
 import CornerAnimation from '../components/corner';
 import {
@@ -8,28 +9,23 @@ import {
   MDBCardOverlay,
   MDBCardImage
 } from 'mdb-react-ui-kit';
-
-const Wait = () => {
-  const [data, setData] = useState([]);
+const WebSocketComponent = () => {
+  const [data, setNumber] = useState(null);
 
   useEffect(() => {
-    const socket = io('http://localhost:8080');
+    const ws = new WebSocket('ws://localhost:8080');
 
-    socket.on('initialData', (data) => {
-      setData(data.data);
-    });
+    ws.onopen = () => {
+      console.log('WebSocket connection opened');
+    };
 
-    socket.on('newData', (data) => {
-      setData((prevData) => {
-        const newData = [...prevData];
-        newData.pop();
-        newData.unshift(data.data);
-        return newData;
-      });
-    });
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setNumber(data.number);
+    };
 
     return () => {
-      socket.disconnect();
+      ws.close();
     };
   }, []);
 
@@ -40,16 +36,18 @@ const Wait = () => {
       <MDBCardOverlay>
         <MDBCardTitle>Card title</MDBCardTitle>
         <MDBCardText>
-          {data.map((item) => (
+          {/* {data.map((item) => (
           <div key={item}>Component with data: {item}</div>
-        ))}
+        ))} */}
+        <h1>Random Number: {data}</h1>
         <CornerAnimation/>
         </MDBCardText>
         <MDBCardText>Last updated 3 mins ago</MDBCardText>
       </MDBCardOverlay>
     </MDBCard>
     </div>
+
   );
 };
 
-export default Wait;
+export default WebSocketComponent;

@@ -1,28 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home"
-import About from "./Pages/About"
-import Navigation from './components/Navigation';
-import Wait from './Pages/Wait';
+import { BrowserRouter as Router, Navigate,Routes, Route} from "react-router-dom";
+import Wait from './Pages/Wait'
+import Home from './Pages/Home';
 import Contacts from './Pages/Contacts'
+import About from './Pages/About'
 import Header from "./components/Header";
-
+import WebSocketComponent from "./Pages/count.jsx"
 function App() {
     return (
       <div className="App">
-        <Header />
-{/*         <Wait /> */}
-
         <Router>
-          <Navigation>
-            <Routes>
-              <Route exact path="/" element={<Wait />} />
-               <Route exact path="/gamestart" element={<Home/>} />
-              <Route exact path="/contact" element={<Contacts />} /> 
-            </Routes>
-          </Navigation>
+            <Routes>
+              <Route path="/" element={<Header/>} exact />
+              <Route path="/gamestart" element={<WebSocketComponent/>} />
+              <Route path="/contact" element={<Contacts />} /> 
+              <Route path="/About" element={<About />} /> 
+              <Route path="*" element={<Navigate to="/" replace />}/>
+            </Routes>
+            
         </Router>
       </div>
     );
+
 }
 
 export default App;
