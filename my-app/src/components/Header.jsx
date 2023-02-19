@@ -20,12 +20,16 @@ const Header = () => {
   </nav>
         <header className="masthead">
           <div className="container">
-            <div className="masthead-subheading">Welcome To Our Studio!</div>
+            <div className="masthead-subheading">Game Starts By:</div>
 
-            <div className="masthead-heading text-uppercase">
-             <Timer />
+           
+<div className="container">
+        
+        <Timer />
+      </div>
+       <div className="masthead-heading text-uppercase">
+            
             </div>
-
             <a className="btn btn-primary btn-xl text-uppercase" href="/gamestart">
               GameStart
             </a>
